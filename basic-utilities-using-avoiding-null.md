@@ -13,6 +13,8 @@ Map.get(key)若返回value值为null，其代表的含义可能是该键指向�
 从内存消耗和效率方面，null更加廉价
 
 #### 优化: Optional
+com.google.common.base.Optional
+
 ```
 Optional<T> possbile = Optional.formNullable(T); //将一个T的实例转换为Optional对象
 boolean present = possible.isPresent(); //若Optional包含的T实例不为null，则返回true；若T实例为null，返回false
