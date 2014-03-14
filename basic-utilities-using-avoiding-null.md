@@ -15,6 +15,25 @@ Map.get(key)若返回value值为null，其代表的含义可能是该键指向�
 
 ###### 解决: Optional
 
+```java
+
+package com.gtt.basicutilities;
+
+import com.google.common.base.Optional;
+
+/**
+ * @author tiantiangao
+ */
+public class OptionalDemo {
+
+
+public static void main(String[] args) {
+	Optional<Integer> possible = Optional.of(6);
+}
+}
+
+```
+
 
 
 ---
