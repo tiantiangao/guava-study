@@ -39,7 +39,7 @@ Preconditions.checkPositionIndex(int index, int size, String desc)
 
 // 检查[start, end)是一个长度为size的集合合法的子集范围
 // 失败时抛出 IndexOutOfBoundsException  
-Preconditions.checkPositionIndexs(int index, int size, String desc)
+Preconditions.checkPositionIndexs(int start, int index, int size)
 
 ```
 

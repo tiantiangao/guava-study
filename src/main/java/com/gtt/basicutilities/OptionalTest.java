@@ -13,15 +13,19 @@ public class OptionalTest {
 
 	@Test
 	public void test() {
+		testNotNullValue();
+		testNullValue();
+	}
 
-		// test not null value
+	private void testNotNullValue() {
 		Optional<Integer> possible = Optional.fromNullable(6);
 		assertTrue(possible.isPresent());
 		assertEquals(6, possible.get().intValue());
 		assertEquals(6, possible.or(1).intValue());
 		assertEquals(6, possible.orNull().intValue());
+	}
 
-		// test null value
+	private void testNullValue() {
 		Optional<Integer> absent = Optional.fromNullable(null);
 		assertFalse(absent.isPresent());
 		try {
@@ -32,6 +36,5 @@ public class OptionalTest {
 		}
 		assertEquals(1, absent.or(1).intValue());
 		assertNull(absent.orNull());
-
 	}
 }
