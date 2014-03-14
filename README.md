@@ -6,17 +6,17 @@ Guava 是一个 Google 的基于java1.6的类库集合的扩展项目，包括 c
 ===
 
 * [基本工具集](basic-utilities.md)
-	+ 使用和避免<code>null</code>
-	+ 参数检查
-	+ 排序
-	+ <code>Object</code>对象的通用方法
-	+ 异常处理
+	+ [使用和避免<b>null</b>](using-avoiding-null.md)
+	+ [参数检查](preconditions.md)
+	+ [排序](ordering.md)
+	+ [<b>Object</b>对象的通用方法](object-methods.md)
+	+ [异常处理](throwables.md)
 
 * [集合](collections.md)
-	+ 不可变集合
-	+ 新的集合类型
-	+ 静态工具类
-	+ 扩展工具
+	+ [不可变集合](immutable-collections.md)
+	+ [新的集合类型](new-collection-types.md)
+	+ [静态工具类](utility-classes.md)
+	+ [扩展工具](extension-utilities.md)
 * [缓存](caches.md)
 * [功能](functional-idioms.md)
 * [并发](concurrency.md)
