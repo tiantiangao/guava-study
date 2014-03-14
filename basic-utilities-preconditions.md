@@ -1,12 +1,12 @@
 优雅的参数检查(Preconditions)
 ===
 #### 问题
-对外接口方法参数过多时，需对参数进行必要的检查，将预期之外的请求快速驳回
+对外接口方法参数过多时，需对参数进行必要的检查，将预期之外的请求快速驳回。
 
 ```java  
 public boolean someMethod(int arg1, String arg2, String arg3, Object arg4){  
 	if( arg1>0 && isNotEmpty(arg2) && isNotEmpty(arg3) && arg4!=null){  
-		return false;  
+		return false; // maybe需要将具体的错误类型告诉调用方  
 	}  
 	...  
 }  
@@ -29,17 +29,21 @@ Preconditions.checkNotNull(T reference, String errMsg, Object... errMsgArgs)
 // 失败时抛出 IllegalStateException  
 Preconditions.checkState(boolean expression, String errMsg, Object... errMsgArgs)
 
-// 检查index是否在合法范围[0, size)  
+// 检查index是否在合法范围[0, size)(不包含size)  
 // 失败时抛出 IndexOutOfBoundsException  
 Preconditions.checkElementIndex(int index, int size, String desc)
 
-// 检查index是否在合法范围[0, size)  
+// 检查位置是否在合法范围[0, size](包含size)
 // 失败时抛出 IndexOutOfBoundsException  
 Preconditions.checkPositionIndex(int index, int size, String desc)
 
+// 检查[start, end)是一个长度为size的集合合法的子集范围
+// 失败时抛出 IndexOutOfBoundsException  
+Preconditions.checkPositionIndexs(int index, int size, String desc)
+
 ```
 
-可以考虑通过静态方式引入com.google.common.base.Preconditions.*
+建议通过静态方式引入com.google.common.base.Preconditions.*
 
 ------
 [返回目录](README.md)
