@@ -6,10 +6,10 @@ Ordering是Guava类库提供的一个犀利强大的比较器工具，Guava的Or
 
 ```java  
 
-Ordering.natural();        // 使用Comparable类型的自然顺序， 例如：整数从小到大，字符串是按字典顺序;  
-Ordering.usingToString();  // 使用toString()返回的字符串按字典顺序进行排序；
-Ordering.from(Comparator); // 将Comparator转换为Ordering
-new Ordering<T>(){         // 或者直接构建一个Ordering对象，并实现compare方法
+Ordering.natural();                  // 使用Comparable类型的自然顺序， 例如：整数从小到大，字符串是按字典顺序;  
+Ordering.usingToString();            // 使用toString()返回的字符串按字典顺序进行排序；
+Ordering.from(Comparator);           // 将Comparator转换为Ordering
+new Ordering<T>(){                   // 或者直接构建一个Ordering对象，并实现compare方法
 	public int compare(T left, T right){}
 }
 ```
