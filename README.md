@@ -9,6 +9,7 @@ Guava 是一个 Google 的基于java1.6类库的扩展项目，包括 collection
 	+ [使用和避免null](basic-utilities-using-avoiding-null.md)
 	+ [参数检查](basic-utilities-preconditions.md)
 	+ [比较器](basic-utilities-ordering.md)
+	+ [默认值](basic-utilities-defaults.md)
 	+ [常用的对象方法](basic-utilities-object-methods.md)
 	+ [Throwable类](basic-utilities-throwables.md)
 
