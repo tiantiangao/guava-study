@@ -17,7 +17,7 @@ Objects.equal(null, null); // returns true
 
 ```java  
 Objects.hashCode(Object...)
-Objects.hashCode(field1， field2， ...， fieldn)
+Objects.hashCode(field1, field2, ..., fieldn)
 ```
 
 #### toString
