@@ -13,7 +13,7 @@ Guava 是一个 Google 的基于java1.6类库的扩展项目，包括 collection
 	+ [常用的对象方法](basic-utilities-object-methods.md)
 	+ [Throwable类](basic-utilities-throwables.md)
 
-* [集合扩展](collections.md)
+* 集合扩展
 	+ [不可变集合](collections-immutable-collections.md)
 	+ [新集合类型](collections-new-collection-types.md)
 	+ [强大的集合工具类](collections-utility-classes.md)
