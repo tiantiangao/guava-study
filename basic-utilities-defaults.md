@@ -14,7 +14,6 @@ long.class                            //返回0L
 float.class                           //返回0f  
 double.class                          //返回0d  
 non-primitive types                   //返回null
-
 ```
 
 ------
