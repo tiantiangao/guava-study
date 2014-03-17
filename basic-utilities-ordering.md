@@ -17,9 +17,10 @@ new Ordering<T>(){         // 或者直接构建一个Ordering对象，并实现
 #### 实例方法(支持链式)
 com.google.common.collect.Ordering
 
-```java
 
-```
+|| 方法 || 描述 ||
+|| reverse() || 返回与当前Ordering相反的排序 ||
+|| nullsFirst() || 返回一个将null放在non-null元素之前的Ordering，其他的和原始的Ordering一样 ||
 
 ------
 [返回目录](README.md)
