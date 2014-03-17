@@ -26,7 +26,8 @@ Objects.hashCode(field1, field2, ..., fieldn)
 ```java   
 Objects.toStringHelper(Persion.class)
        .add("name", this.name)
-       .add("age", this.age);
+       .add("age", this.age)
+       .toString();
 ```
 
 #### compare/compareTo
