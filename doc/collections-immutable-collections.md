@@ -33,7 +33,7 @@ JDK自带的Collections.unmodifiableXXX实现的不可变集合存在问题:
 #### 方案
 com.google.common.collect.ImmutableXXX
 
-创建Immutable集合的方法
+##### 创建Immutable集合的方法
 ```java
 ImmutableSet.copyOf(set);           // 使用copyOf方法
 ImmutableSet.of("a", "b", "c");     // 使用of方法
@@ -44,7 +44,7 @@ ImmutableSet.<Color>builder()       // 使用builder
             .build();
 ```
 
-智能的copyOf方法  
+##### 智能的copyOf方法  
 一般来说，ImmutableXXX.copyOf(ImmutableCollection)会避免线性复杂度的拷贝操作:
 
 * 这个操作有可能就利用了被封装数据结构的常数复杂度的操作。但例如ImmutableSet.copyOf(list)不能在常数复杂度下实现。
@@ -53,8 +53,92 @@ ImmutableSet.<Color>builder()       // 使用builder
 
 这些特性有助于最优化防御性编程的性能开销
 
+##### asList方法
+所有的immutable集合都以asList()的形式提供了ImmutableList视图(view).  
+比如，你把数据放在ImmutableSortedSet，你就可以调用sortedSet.asList().get(k)来取得第k个元素的集合。  
+返回的ImmutableList常常是个常数复杂度的视图，而不是一个真的拷贝。  
 
+##### guava中的不可变集合
 
+<table>
+<tbody>
+<tr>
+	<td>可变类型集合</td>
+	<td>来源</td>
+	<td>Guava中的不可变集合</td>
+</tr>
+<tr>
+	<td>Collection </td>
+	<td>JDK</td>
+	<td>ImmutableCollection</td>
+</tr>
+<tr>
+	<td>List</td>
+	<td>JDK</td>
+	<td>ImmutableList</td>
+</tr>
+<tr>
+	<td>Set</td>
+	<td>JDK</td>
+	<td>ImmutableSet</td>
+</tr>
+<tr>
+	<td>SortedSet/NavigableSet</td>
+	<td>JDK</td>
+	<td>ImmutableSortedSet</td>
+</tr>
+<tr>
+	<td>Map</td>
+	<td>JDK</td>
+	<td>ImmutableMap</td>
+</tr>
+<tr>
+	<td>SortedMap</td>
+	<td>JDK</td>
+	<td>ImmutableSortedMap</td>
+</tr>
+<tr>
+	<td>Multiset</td>
+	<td>Guava</td>
+	<td>ImmutableMultiset</td>
+</tr>
+<tr>
+	<td>SortedMultiset</td>
+	<td>Guava</td>
+	<td>ImmutableSortedMultiset</td>
+</tr>
+<tr>
+	<td>Multimap</td>
+	<td>Guava</td>
+	<td>ImmutableMultimap</td>
+</tr>
+<tr>
+	<td>ListMultimap</td>
+	<td>Guava</td>
+	<td>ImmutableListMultimap</td>
+</tr>
+<tr>
+	<td>SetMultimap</td>
+	<td>Guava</td>
+	<td>ImmutableSetMultimap</td>
+</tr>
+<tr>
+	<td>BiMap</td>
+	<td>Guava</td>
+	<td>ImmutableBiMap</td>
+</tr>
+<tr>
+	<td>ClassToInstanceMap</td>
+	<td>Guava</td>
+	<td>ImmutableClassToInstanceMap</td>
+</tr>
+<tr>
+	<td>Table</td>
+	<td>Guava</td>
+	<td>ImmutableTable</td>
+</tr>
+</tbody>
+</table>
 
 ------
 [返回目录](/README.md)

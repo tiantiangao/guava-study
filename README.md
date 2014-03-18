@@ -32,3 +32,6 @@ Guava 是一个 Google 的基于java1.6类库的扩展项目，包括 collection
 * [事件总线](doc/eventbus.md)
 * [运算工具](doc/math.md)
 * [反射工具](doc/reflection.md)
+
+
+注: 本学习记录参考了[@peida](http://www.cnblogs.com/peida/p/Guava.html)的博客
