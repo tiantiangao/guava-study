@@ -12,6 +12,7 @@ Immutable对象有以下的优点:
 Immutable对象是一个很好的防御编程(defensive programming)的技术实践
 
 #### 问题
+----------
 JDK自带的Collections.unmodifiableXXX实现的不是真正的不可变集合，当原始集合修改后，不可变集合也发生变化。
 
 ```java  
@@ -31,6 +32,7 @@ JDK自带的Collections.unmodifiableXXX实现的不可变集合存在问题:
 
 
 #### 方案
+----------
 com.google.common.collect.ImmutableXXX
 
 创建Immutable集合的方法
@@ -49,8 +51,10 @@ ImmutableSet.<Color>builder()       // 使用builder
 
 * 这个操作有可能就利用了被封装数据结构的常数复杂度的操作。但例如ImmutableSet.copyOf(list)不能在常数复杂度下实现。
 * 这样不会导致内存泄漏－例如，你有个ImmutableList<String> imInfolist，然后你显式操作ImmutableList.copyOf(imInfolist.subList(0, 10))。这样的操作可以避免意外持有不再需要的在hugeList里元素的reference。
-* 它不会改变集合的语意－像ImmutableSet.copyOf(myImmutableSortedSet)这样的显式拷贝操作，因为在ImmutableSet里的hashCode()和equals()的含义和基于comparator的ImmutableSortedSet是不同的。
-* 这些特性有助于最优化防御性编程的性能开销
+* 它不会改变集合的语意－像ImmutableSet.copyOf(myImmutableSortedSet)这样的显式拷贝操作，因为在ImmutableSet里的hashCode()和equals()的含义和基于comparator的ImmutableSortedSet是不同的。  
+
+这些特性有助于最优化防御性编程的性能开销
+
 
 
 
