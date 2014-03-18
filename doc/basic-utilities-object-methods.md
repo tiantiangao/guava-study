@@ -55,4 +55,4 @@ ComparisonChain.start()
 ComparisonChain是一个lazy的比较过程， 当比较结果为0的时候， 即相等的时候， 会继续比较下去， 出现非0的情况， 就会忽略后面的比较
 
 ------
-[返回目录](README.md)
+[返回目录](/README.md)
