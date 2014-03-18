@@ -12,7 +12,6 @@ Immutable对象有以下的优点:
 Immutable对象是一个很好的防御编程(defensive programming)的技术实践
 
 #### 问题
-----------
 JDK自带的Collections.unmodifiableXXX实现的不是真正的不可变集合，当原始集合修改后，不可变集合也发生变化。
 
 ```java  
@@ -32,7 +31,6 @@ JDK自带的Collections.unmodifiableXXX实现的不可变集合存在问题:
 
 
 #### 方案
-----------
 com.google.common.collect.ImmutableXXX
 
 创建Immutable集合的方法
