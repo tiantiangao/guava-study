@@ -2,12 +2,12 @@ Guava新增集合类型
 ===
 Guava新增了一些JDK中没有的，但是被广泛使用到的新集合类型
 
-* [MultiSet](#MultiSet)
-* [MultiMap](#MultiMap)
-* [BiMap](#BiMap)
-* [Table](#Table)
-* [ClassToInstanceMap](#ClassToInstanceMap)
-* [RangeSet](#RangeSet)
+* [MultiSet](#multiset)
+* [MultiMap](#multimap)
+* [BiMap](#bimap)
+* [Table](#table)
+* [ClassToInstanceMap](#classtoinstancemap)
+* [RangeSet](#rangeset)
 
 <h4 id="MultiSet">MultiSet</h4>
 MultiSet和Set的区别就是可以保存多个相同的对象。  
