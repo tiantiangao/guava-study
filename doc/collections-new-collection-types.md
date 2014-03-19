@@ -143,7 +143,72 @@ BiMap<String,Integer> filelogMap = logfileMap.inverse();
 
 <h3 id="table">Table</h3>
 
+当我们需要多个索引的数据结构的时候，通常情况下，我们只能用这种丑陋的Map<FirstName, Map<LastName, Person>>来实现。为此Guava提供了一个新的集合类型－Table集合类型，来支持这种数据结构的使用场景。  
+
+##### Table的视图
+<table>
+<tr>
+	<td>视图</td>
+	<td>描述</td>
+</tr>
+<tr>
+	<td>rowMap()</td>
+	<td>用Map<R, Map<C, V>>表现Table<R, C, V></td>
+</tr>
+<tr>
+	<td>rowKeySet()</td>
+	<td>rowKeySet()返回”行”的集合Set<R></td>
+</tr>
+<tr>
+	<td>row(r) </td>
+	<td>用Map<C, V>返回给定”行”的所有列，对这个map进行的写操作也将写入Table中。</td>
+</tr>
+<tr>
+	<td>columnMap()</td>
+	<td>用Map<C, Map<R, V>>表现Table<R, C, V></td>
+</tr>
+<tr>
+	<td>columnKeySet()</td>
+	<td>columnKeySet()返回”列”的集合Set<R></td>
+</tr>
+<tr>
+	<td>column(r) </td>
+	<td>用Map<R, V>返回给定”列”的所有行，对这个map进行的写操作也将写入Table中。</td>
+</tr>
+<tr>
+	<td>cellSet()</td>
+	<td>用元素类型为Table.Cell<R, C, V>的Set表现Table<R, C, V>。Cell类似于Map.Entry，但它是用行和列两个键区分的。</td>
+</tr>
+</table>
+注: 基于列的访问会比基于的行访问稍微低效点  
+
+Table有如下实现
+<table>
+<tr>
+	<td>实现</td>
+	<td>描述</td>
+</tr>
+<tr>
+	<td>HashBasedTable</td>
+	<td>本质上用HashMap<R, HashMap<C, V>>实现</td>
+</tr>
+<tr>
+	<td>TreeBasedTable</td>
+	<td>本质上用TreeMap<R, TreeMap<C,V>>实现</td>
+</tr>
+<tr>
+	<td>ImmutableTable</td>
+	<td>本质上用ImmutableMap<R, ImmutableMap<C, V>>实现；注：ImmutableTable对稀疏或密集的数据集都有优化。</td>
+</tr>
+<tr>
+	<td>ArrayTable</td>
+	<td>要求在构造时就指定行和列的大小，本质上由一个二维数组实现，以提升访问速度和密集Table的内存利用率。</td>
+</tr>
+</table>
+
 <h3 id="classtoinstancemap">ClassToInstanceMap</h3>
+
+
 
 <h3 id="rangeset">RangeSet</h3>
 
