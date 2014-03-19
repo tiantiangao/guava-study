@@ -28,6 +28,40 @@ Multiset接口定义的接口主要有：
 * retainAll(Collection c): 保留出现在给定集合参数的所有的元素
 * removeAll(Collectionc): 去除出现给给定集合参数的所有的元素
 
+Guava提供了很多和JDK中的Map对应的Multiset的实现
+<table>
+<tr>
+	<td>Map</td>
+	<td>对应的MultiSet</td>
+	<td>支持null值</td>
+</tr>
+<tr>
+	<td>HashMap</td>
+	<td>HashMultiset</td>
+	<td>是</td>
+</tr>
+<tr>
+	<td>TreeMap</td>
+	<td>TreeMultiSet</td>
+	<td>是</td>
+</tr>
+<tr>
+	<td>LinkedHashMap</td>
+	<td>LinkedHashMultiset</td>
+	<td>是</td>
+</tr>
+<tr>
+	<td>ConcurrentHashMap</td>
+	<td>ConcurrentHashMultiset</td>
+	<td>否</td>
+</tr>
+<tr>
+	<td>ImmutableMap</td>
+	<td>ImmutableMultiset</td>
+	<td>否</td>
+</tr>
+</table>
+
 <h4 id="MultiMap">MultiMap</h4>
 
 <h4 id="BiMap">BiMap</h4>
