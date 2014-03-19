@@ -30,6 +30,9 @@ Objects.toStringHelper(Persion.class)
        .toString();
 ```
 
+> Intellij Idea中可以安装*Guava equals, hashCode and toString generator*插件来快速生成这三个方法
+
+
 #### compare/compareTo
 compareTo是java.lang.Comparable<T>接口中的方法  
 
