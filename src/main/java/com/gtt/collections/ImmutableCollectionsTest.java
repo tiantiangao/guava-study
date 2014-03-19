@@ -1,14 +1,13 @@
 package com.gtt.collections;
 
-import static org.junit.Assert.assertEquals;
+import com.google.common.collect.*;
+import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import org.junit.Test;
-
-import com.google.common.collect.*;
+import static org.junit.Assert.assertEquals;
 
 /**
  * @author tiantiangao
@@ -20,6 +19,7 @@ public class ImmutableCollectionsTest {
 		testJDKUnmodifiedList();
 		testCreate();
 		testAsList();
+		testImmutableXXX();
 	}
 
 	private void testJDKUnmodifiedList() {
@@ -55,6 +55,11 @@ public class ImmutableCollectionsTest {
 	}
 
 	private void testBuilder() {
+		ImmutableMap<Object, Object> map = ImmutableMap.builder().put("aaa", 1).put("bbb", 2).put("ccc", 3).build();
+		assertEquals(3, map.size());
+		assertEquals(1, map.get("aaa"));
+		assertEquals(2, map.get("bbb"));
+		assertEquals(3, map.get("ccc"));
 	}
 
 	private void testAsList() {
@@ -63,5 +68,16 @@ public class ImmutableCollectionsTest {
 
 		List<Integer> list = Lists.newArrayList(1, 2, 3, 4, 5);
 		assertEquals(list, ilist);
+	}
+
+	private void testImmutableXXX() {
+		assertEquals(5, ImmutableList.of(1, 2, 3, 4, 5).size());
+		assertEquals(5, ImmutableSet.of(1, 2, 3, 4, 5).size());
+		assertEquals(5, ImmutableSortedSet.of(1, 2, 3, 4, 5).size());
+		assertEquals(3, ImmutableMap.of(1, 2, 3, 4, 5, 6).size());
+		assertEquals(3, ImmutableSortedMap.of(1, 2, 3, 4, 5, 6).size());
+		assertEquals(9, ImmutableMultiset.of(1, 1, 2, 2, 3, 3, 4, 5, 6).size());
+		assertEquals(6, ImmutableMultiset.of(1, 1, 2, 2, 3, 3, 4, 5, 6).elementSet().size());
+		assertEquals(2, ImmutableMultiset.of(1, 1, 2, 2, 3, 3, 4, 5, 6).count(1));
 	}
 }
