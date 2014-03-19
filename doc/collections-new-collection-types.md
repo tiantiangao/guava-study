@@ -2,15 +2,17 @@ Guava新增集合类型
 ===
 Guava新增了一些JDK中没有的，但是被广泛使用到的新集合类型
 
-* [MultiSet](#multiset)
+* [Multiset](#multiset)
+* [SortedMultiset](#sortedmultiset)
 * [MultiMap](#multimap)
 * [BiMap](#bimap)
 * [Table](#table)
 * [ClassToInstanceMap](#classtoinstancemap)
 * [RangeSet](#rangeset)
 
-<h4 id="MultiSet">MultiSet</h4>
-MultiSet和Set的区别就是可以保存多个相同的对象。  
+<h4 id="multiset">Multiset</h4>
+
+Multiset和Set的区别就是可以保存多个相同的对象。  
 Multiset占据了List和Set之间的一个灰色地带：允许重复，但是不保证顺序。  
 常见使用场景：Multiset有一个有用的功能，就是跟踪每种对象的数量，所以你可以用来进行数字统计。  
 
@@ -62,15 +64,22 @@ Guava提供了很多和JDK中的Map对应的Multiset的实现
 </tr>
 </table>
 
-<h4 id="MultiMap">MultiMap</h4>
+<h4 id="sortedmultiset">SortedMultiset</h4>
 
-<h4 id="BiMap">BiMap</h4>
+SortedMultiset是Multiset 接口的变种，它支持高效地获取指定范围的子集。  
+比如，你可以用 latencies.subMultiset(0,BoundType.CLOSED, 100, BoundType.OPEN).size()来统计你的站点中延迟在100毫秒以内的访问，然后把这个值和latencies.size()相比，以获取这个延迟水平在总体访问中的比例。
 
-<h4 id="Table">Table</h4>
+TreeMultiset实现SortedMultiset接口。
 
-<h4 id="ClassToInstanceMap">ClassToInstanceMap</h4>
+<h4 id="multimap">MultiMap</h4>
 
-<h4 id="RangeSet">RangeSet</h4>
+<h4 id="bimap">BiMap</h4>
+
+<h4 id="table">Table</h4>
+
+<h4 id="classtoinstancemap">ClassToInstanceMap</h4>
+
+<h4 id="rangeset">RangeSet</h4>
 
 
 
