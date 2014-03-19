@@ -10,7 +10,7 @@ Guava新增了一些JDK中没有的，但是被广泛使用到的新集合类型
 * [ClassToInstanceMap](#classtoinstancemap)
 * [RangeSet](#rangeset)
 
-<h4 id="multiset">Multiset</h4>
+<h3 id="multiset">Multiset</h3>
 
 Multiset和Set的区别就是可以保存多个相同的对象。  
 Multiset占据了List和Set之间的一个灰色地带：允许重复，但是不保证顺序。  
@@ -64,14 +64,14 @@ Guava提供了很多和JDK中的Map对应的Multiset的实现
 </tr>
 </table>
 
-<h4 id="sortedmultiset">SortedMultiset</h4>
+<h3 id="sortedmultiset">SortedMultiset</h3>
 
 SortedMultiset是Multiset 接口的变种，它支持高效地获取指定范围的子集。  
 比如，你可以用 latencies.subMultiset(0,BoundType.CLOSED, 100, BoundType.OPEN).size()来统计你的站点中延迟在100毫秒以内的访问，然后把这个值和latencies.size()相比，以获取这个延迟水平在总体访问中的比例。
 
 TreeMultiset实现SortedMultiset接口。
 
-<h4 id="multimap">MultiMap</h4>
+<h3 id="multimap">MultiMap</h3>
 
 经常会遇到这种结构 Map<K, List<V>>或Map<K, Set<V>>  
 Multimap可以很容易地把一个键映射到多个值。换句话说，Multimap是把键映射到任意多个值的一种方式。
@@ -119,13 +119,13 @@ Multimap.get(key)以集合形式返回键所对应的值视图, 对值视图集�
 </tr>
 </table>
 
-<h4 id="bimap">BiMap</h4>
+<h3 id="bimap">BiMap</h3>
 
-<h4 id="table">Table</h4>
+<h3 id="table">Table</h3>
 
-<h4 id="classtoinstancemap">ClassToInstanceMap</h4>
+<h3 id="classtoinstancemap">ClassToInstanceMap</h3>
 
-<h4 id="rangeset">RangeSet</h4>
+<h3 id="rangeset">RangeSet</h3>
 
 
 
