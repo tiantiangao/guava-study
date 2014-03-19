@@ -130,6 +130,16 @@ Multimap<K, V>不是Map<K,Collection<V>>
 
 <h3 id="bimap">BiMap</h3>
 
+BiMap提供了key和value双向关联的数据结构。
+
+* 可以用inverse()反转BiMap<K, V>的键值映射, 反转的map不是新的map对象，它实现了一种视图关联，这样你对于反转后的map的所有操作都会影响原先的map对象
+* 保证值是唯一的，因此 values()返回Set而不是普通的Collection, 使用BiMap.forcePut(key, value)可强制替换
+
+```java  
+BiMap<Integer,String> logfileMap = HashBiMap.create(); 
+BiMap<String,Integer> filelogMap = logfileMap.inverse();
+```
+
 <h3 id="table">Table</h3>
 
 <h3 id="classtoinstancemap">ClassToInstanceMap</h3>
