@@ -73,6 +73,52 @@ TreeMultiset实现SortedMultiset接口。
 
 <h4 id="multimap">MultiMap</h4>
 
+经常会遇到这种结构 Map<K, List<V>>或Map<K, Set<V>>  
+Multimap可以很容易地把一个键映射到多个值。换句话说，Multimap是把键映射到任意多个值的一种方式。
+
+可以用两种方式思考Multimap的概念:  
+
+* "键-单个值映射"的集合:  a->1, a->2, a->4, b->3, c->5
+* "键-值集合映射"的映射:  a->[1,2,4], b->3, c->5
+
+一般来说，Multimap接口应该用第一种方式看待，但asMap()视图返回Map<K, Collection<V>>，让你可以按另一种方式看待Multimap。  
+重要的是，不会有任何键映射到空集合：一个键要么至少到一个值，要么根本就不在Multimap中。  
+一般情况下都使用ListMultimap或SetMultimap接口，它们分别把键映射到List或Set。  
+Multimap.get(key)以集合形式返回键所对应的值视图, 对值视图集合进行的修改最终都会反映到底层的Multimap。  
+修改Multimap的方法有:
+<table>
+<tr>
+	<td>方法签名</td>
+	<td>描述</td>
+	<td>等价于</td>
+</tr>
+<tr>
+	<td>put(K, V)</td>
+	<td>添加键到单个值的映射</td>
+	<td>multimap.get(key).add(value)</td>
+</tr>
+<tr>
+	<td>putAll(K, Iterable<V>)</td>
+	<td>依次添加键到多个值的映射</td>
+	<td>Iterables.addAll(multimap.get(key), values)</td>
+</tr>
+<tr>
+	<td>remove(K, V)</td>
+	<td>移除键到值的映射；如果有这样的键值并成功移除，返回true。</td>
+	<td>multimap.get(key).remove(value)</td>
+</tr>
+<tr>
+	<td>removeAll(K)</td>
+	<td>清除键对应的所有值，返回的集合包含所有之前映射到K的值，但修改这个集合就不会影响Multimap了。</td>
+	<td>multimap.get(key).clear()</td>
+</tr>
+<tr>
+	<td>replaceValues(K, Iterable<V>)</td>
+	<td>清除键对应的所有值，并重新把key关联到Iterable中的每个元素。返回的集合包含所有之前映射到K的值。</td>
+	<td>multimap.get(key).clear();   Iterables.addAll(multimap.get(key), values)</td>
+</tr>
+</table>
+
 <h4 id="bimap">BiMap</h4>
 
 <h4 id="table">Table</h4>
