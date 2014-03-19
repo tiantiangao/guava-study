@@ -81,10 +81,9 @@ Multimap可以很容易地把一个键映射到多个值。换句话说，Multim
 * "键-单个值映射"的集合:  a->1, a->2, a->4, b->3, c->5
 * "键-值集合映射"的映射:  a->[1,2,4], b->3, c->5
 
-一般来说，Multimap接口应该用第一种方式看待，但asMap()视图返回Map<K, Collection<V>>，让你可以按另一种方式看待Multimap。  
-重要的是，不会有任何键映射到空集合：一个键要么至少到一个值，要么根本就不在Multimap中。  
-一般情况下都使用ListMultimap或SetMultimap接口，它们分别把键映射到List或Set。  
-Multimap.get(key)以集合形式返回键所对应的值视图, 即使没有任何对应的值，也会返回空集合。对值视图集合进行的修改最终都会反映到底层的Multimap。  
+一般情况下都会使用ListMultimap或SetMultimap接口，它们分别把键映射到List或Set。  
+Multimap.get(key)以集合形式返回键所对应的值视图, 即使没有任何对应的值，也会返回空集合。  
+对值视图集合进行的修改最终都会反映到底层的Multimap。  
 
 ##### 修改Multimap的方法有:
 <table>
