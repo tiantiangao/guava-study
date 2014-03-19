@@ -86,7 +86,7 @@ Multimap可以很容易地把一个键映射到多个值。换句话说，Multim
 一般情况下都使用ListMultimap或SetMultimap接口，它们分别把键映射到List或Set。  
 Multimap.get(key)以集合形式返回键所对应的值视图, 即使没有任何对应的值，也会返回空集合。对值视图集合进行的修改最终都会反映到底层的Multimap。  
 
-###### 修改Multimap的方法有:
+##### 修改Multimap的方法有:
 <table>
 <tr>
 	<td>方法签名</td>
@@ -120,7 +120,7 @@ Multimap.get(key)以集合形式返回键所对应的值视图, 即使没有任�
 </tr>
 </table>
 
-###### Multimap不是Map
+##### Multimap不是Map
 Multimap<K, V>不是Map<K,Collection<V>>
 
 * Multimap.get(key)总是返回非null、但是可能空的集合。这并不意味着Multimap为相应的键花费内存创建了集合，而只是提供一个集合视图方便你为键增加映射值
