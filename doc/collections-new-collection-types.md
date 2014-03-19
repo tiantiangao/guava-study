@@ -84,8 +84,9 @@ Multimap可以很容易地把一个键映射到多个值。换句话说，Multim
 一般来说，Multimap接口应该用第一种方式看待，但asMap()视图返回Map<K, Collection<V>>，让你可以按另一种方式看待Multimap。  
 重要的是，不会有任何键映射到空集合：一个键要么至少到一个值，要么根本就不在Multimap中。  
 一般情况下都使用ListMultimap或SetMultimap接口，它们分别把键映射到List或Set。  
-Multimap.get(key)以集合形式返回键所对应的值视图, 对值视图集合进行的修改最终都会反映到底层的Multimap。  
-修改Multimap的方法有:
+Multimap.get(key)以集合形式返回键所对应的值视图, 即使没有任何对应的值，也会返回空集合。对值视图集合进行的修改最终都会反映到底层的Multimap。  
+
+###### 修改Multimap的方法有:
 <table>
 <tr>
 	<td>方法签名</td>
@@ -118,6 +119,15 @@ Multimap.get(key)以集合形式返回键所对应的值视图, 对值视图集�
 	<td>multimap.get(key).clear();   Iterables.addAll(multimap.get(key), values)</td>
 </tr>
 </table>
+
+###### Multimap不是Map
+Multimap<K, V>不是Map<K,Collection<V>>
+
+* Multimap.get(key)总是返回非null、但是可能空的集合。这并不意味着Multimap为相应的键花费内存创建了集合，而只是提供一个集合视图方便你为键增加映射值
+* 如果你更喜欢像Map那样，为Multimap中没有的键返回null，请使用asMap()视图获取一个Map<K, Collection<V>>
+* 当且仅当有值映射到键时，Multimap.containsKey(key)才会返回true
+* Multimap.entries()返回Multimap中所有”键-单个值映射”——包括重复键。如果你想要得到所有”键-值集合映射”，请使用asMap().entrySet()。
+* Multimap.size()返回所有”键-单个值映射”的个数，而非不同键的个数。要得到不同键的个数，请改用Multimap.keySet().size()。
 
 <h3 id="bimap">BiMap</h3>
 
