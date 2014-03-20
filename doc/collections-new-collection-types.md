@@ -208,11 +208,31 @@ Table有如下实现
 
 <h3 id="classtoinstancemap">ClassToInstanceMap</h3>
 
+ClassToInstanceMap<B> 相当于 Map<Class<? extends B>, B>, 它的键是类型，而值是符合键所指类型的对象。  
+ClassToInstanceMap额外声明了两个方法：T getInstance(Class<T>) 和T putInstance(Class<T>, T)，从而避免强制类型转换，同时保证了类型安全。  
 
 
 <h3 id="rangeset">RangeSet</h3>
 
+RangeSet描述了一组不相连的、非空的区间。当把一个区间添加到可变的RangeSet时，所有相连的区间会被合并，空区间会被忽略。  
+例如：  
+```java  
+RangeSet<Integer> rangeSet = TreeRangeSet.create();  
+rangeSet.add(Range.closed(1, 10)); // {[1, 10]}  
+rangeSet.add(Range.closedOpen(11, 15)); // 不相连的区间: {[1, 10], [11, 15)} 
+rangeSet.add(Range.closedOpen(15, 20)); // 相连的区间; {[1, 10], [11, 20)}
+rangeSet.add(Range.openClosed(0, 0)); // 空区间; {[1, 10], [11, 20)}
+rangeSet.remove(Range.open(5, 10)); // 分割[1, 10]; {[1, 5], [10, 10], [11, 20)}
+```
 
+RangeMap描述了"不相交的、非空的区间"到特定值的映射。和RangeSet不同，RangeMap不会合并相邻的映射，即便相邻的区间映射到相同的值。例如：
+```java  
+RangeMap<Integer, String> rangeMap = TreeRangeMap.create();
+rangeMap.put(Range.closed(1, 10), "foo"); // {[1, 10] => "foo"}
+rangeMap.put(Range.open(3, 6), "bar"); // {[1, 3] => "foo", (3, 6) => "bar", [6, 10] => "foo"}
+rangeMap.put(Range.open(10, 20), "foo"); // {[1, 3] => "foo", (3, 6) => "bar", [6, 10] => "foo", (10, 20) => "foo"}
+rangeMap.remove(Range.closed(5, 11)); // {[1, 3] => "foo", (3, 5) => "bar", (11, 20) => "foo"}
+```
 
 ------
 [返回目录](/README.md)
