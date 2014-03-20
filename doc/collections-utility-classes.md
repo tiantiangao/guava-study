@@ -235,13 +235,60 @@ diff.entriesOnlyOnRight(); // {"d" => 5}, 键只存在于右边Map的映射项
 
 ```
 
-
 <h3 id="multisets">Multisets</h3>
+
+```java  
+containsOccurrences(Multiset sup, Multiset sub); //对任意o，如果sub.count(o)<=super.count(o)，返回true  
+removeOccurrences(Multiset removeFrom, Multiset toRemove); //对toRemove中的重复元素，仅在removeFrom中删除相同个数  
+retainOccurrences(Multiset removeFrom, Multiset toRetain); //修改removeFrom，以保证任意o都符合removeFrom.count(o)<=toRetain.count(o)  
+intersection(Multiset, Multiset); //返回两个multiset的交集  
+copyHighestCountFirst(Multiset); //返回Multiset的不可变拷贝，并将元素按重复出现的次数做降序排列  
+unmodifiableMultiset(Multiset); //返回Multiset的只读视图  
+unmodifiableSortedMultiset(SortedMultiset); //返回SortedMultiset的只读视图  
+
+```
 
 <h3 id="multimaps">Multimaps</h3>
 
+#### index
+作为Maps.uniqueIndex的兄弟方法，Multimaps.index(Iterable, Function)通常针对的场景是：有一组对象，它们有共同的特定属性，我们希望按照这个属性的值查询对象，但属性值不一定是独一无二的。
+
+#### invertFrom
+鉴于Multimap可以把多个键映射到同一个值，也可以把一个键映射到多个值，反转Multimap也会很有用。Guava 提供了invertFrom(Multimap toInvert, Multimap dest)做这个操作，并且你可以自由选择反转后的Multimap实现。
+> TreeMultimap<Integer, String> inverse = Multimaps.invertFrom(multimap, TreeMultimap<String, Integer>.create());
+
+#### forMap
+forMap方法把Map包装成SetMultimap, 与Multimaps.invertFrom结合使用，可以把多对一的Map反转为一对多的Multimap。
+```java  
+Map<String, Integer> map = ImmutableMap.of("a", 1, "b", 1, "c", 2);  
+SetMultimap<String, Integer> multimap = Multimaps.forMap(map);  
+// multimap maps ["a" => {1}, "b" => {1}, "c" => {2}]  
+Multimap<Integer, String> inverse = Multimaps.invertFrom(multimap, HashMultimap.<Integer, String> create());  
+// inverse maps [1 => {"a", "b"}, 2 => {"c"}]
+
+```
+
 <h3 id="tables">Tables</h3>
 
+#### customTable
+
+Tables.newCustomTable(Map, Supplier<Map>)允许你指定Table用什么样的map实现行和列。
+```java  
+// use LinkedHashMaps instead of HashMaps
+Table<String, Character, Integer> table = Tables.newCustomTable(
+    Maps.<String, Map<Character, Integer>>newLinkedHashMap(),
+    new Supplier<Map<Character, Integer>> () {
+        public Map<Character, Integer> get() {
+            return Maps.newLinkedHashMap();
+        }
+    }
+);
+
+```
+
+#### transpose
+
+transpose(Table<R, C, V>)方法允许你把Table<C, R, V>转置成Table<R, C, V>。例如，如果你在用Table构建加权有向图，这个方法就可以把有向图反转。
 
 ------
 [返回目录](/README.md)
