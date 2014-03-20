@@ -34,4 +34,6 @@ Guava 是一个 Google 的基于java1.6类库的扩展项目，包括 collection
 * [反射工具](doc/reflection.md)
 
 
-注: 本学习记录参考了[@peida](http://www.cnblogs.com/peida/p/Guava.html)的博客
+注: 本学习记录参考了以下网络资源:
+[@peida](http://www.cnblogs.com/peida/p/Guava.html)
+[@并发编程网](http://ifeve.com/category/guava-2/)
