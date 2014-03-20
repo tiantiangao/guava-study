@@ -58,5 +58,24 @@ while (iter.hasNext()) {
 
 ##### AbstractIterator
 
+AbstractIterator可以让你更方便地实现自己的Iterator
+
+```java  
+public static Iterator<String> skipNulls(final Iterator<String> in) {  
+    return new AbstractIterator<String>() {  
+        protected String computeNext() {  
+            while (in.hasNext()) {  
+                String s = in.next();  
+                if (s != null) {  
+                    return s;  
+                }  
+            }  
+            return endOfData();  
+        }  
+    };  
+}  
+
+```
+
 ------
 [返回目录](/README.md)
