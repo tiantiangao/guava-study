@@ -46,10 +46,10 @@ public class CollectionUtilitiesTest {
 		Sets.newTreeSet(Ordering.natural());
 
 		// 集合运算(返回SetView)
-		System.out.println(Sets.union(Sets.newHashSet(1, 2, 3), Sets.newHashSet(4, 5, 6)).toString()); // 组合
-		System.out.println(Sets.intersection(Sets.newHashSet(1, 2, 3), Sets.newHashSet(3, 4, 5))); // 取交集
-		System.out.println(Sets.difference(Sets.newHashSet(1, 2, 3), Sets.newHashSet(3, 4, 5))); // 只在set1, 不在set2
-		System.out.println(Sets.symmetricDifference(Sets.newHashSet(1, 2, 3), Sets.newHashSet(3, 4, 5))); // 交集取反
+		Sets.union(Sets.newHashSet(1, 2, 3), Sets.newHashSet(4, 5, 6)).toString(); // 取并集[1,2,3,4,5]
+		Sets.intersection(Sets.newHashSet(1, 2, 3), Sets.newHashSet(3, 4, 5)); // 取交集[3]
+		Sets.difference(Sets.newHashSet(1, 2, 3), Sets.newHashSet(3, 4, 5)); // 只在set1, 不在set2[1,2]
+		Sets.symmetricDifference(Sets.newHashSet(1, 2, 3), Sets.newHashSet(3, 4, 5)); // 交集取反[1,2,4,5]
 
 		// 其他工具方法
 		Sets.cartesianProduct(Lists.newArrayList(Sets.newHashSet(1, 2), Sets.newHashSet(3, 4))); // 返回所有集合的笛卡尔积

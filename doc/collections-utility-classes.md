@@ -186,10 +186,10 @@ Sets.newTreeSet(Lists.newArrayList(1, 2, 3));
 Sets.newTreeSet(Ordering.natural());  
 
 // 集合运算(返回SetView)  
-Sets.union(Sets.newHashSet(1, 2, 3), Sets.newHashSet(4, 5, 6)); // 组合  
-Sets.intersection(Sets.newHashSet(1, 2, 3), Sets.newHashSet(3, 4, 5)); // 取交集  
-Sets.difference(Sets.newHashSet(1, 2, 3), Sets.newHashSet(3, 4, 5)); // 只在set1, 不在set2  
-Sets.symmetricDifference(Sets.newHashSet(1, 2, 3), Sets.newHashSet(3, 4, 5)); // 交集取反  
+Sets.union(Sets.newHashSet(1, 2, 3), Sets.newHashSet(4, 5, 6)); // 取并集[1,2,3,4,5,6]  
+Sets.intersection(Sets.newHashSet(1, 2, 3), Sets.newHashSet(3, 4, 5)); // 取交集[3]  
+Sets.difference(Sets.newHashSet(1, 2, 3), Sets.newHashSet(3, 4, 5)); // 只在set1, 不在set2[1,2]  
+Sets.symmetricDifference(Sets.newHashSet(1, 2, 3), Sets.newHashSet(3, 4, 5)); // 交集取反[1,2,4,5]  
 
 // 其他工具方法  
 Sets.cartesianProduct(Lists.newArrayList(Sets.newHashSet(1, 2), Sets.newHashSet(3, 4))); // 返回所有集合的笛卡尔积  
