@@ -82,13 +82,12 @@ JDK7之前构造一个集合
 > List<TypeThatsTooLongForItsOwnGood> list = new ArrayList<TypeThatsTooLongForItsOwnGood>();
 
 Guava提供了能够推断泛型的静态工厂方法
-> List<TypeThatsTooLongForItsOwnGood> list = Lists.newArrayList();
-> List<String> theseElements = Lists.newArrayList("alpha", "beta", "gamma"); //可以直接初始化的静态构造方法
-> List<Type> exactly100 = Lists.newArrayListWithCapacity(100); //更具可读性的工厂方法
-> List<Type> approx100 = Lists.newArrayListWithExpectedSize(100); //更具可读性的工厂方法
-> Set<String> set = Sets.newHashSet();
-> Set<Type> approx100Set = Sets.newHashSetWithExpectedSize(100);
-``
+> List<TypeThatsTooLongForItsOwnGood> list = Lists.newArrayList();  
+> List<String> theseElements = Lists.newArrayList("alpha", "beta", "gamma"); //可以直接初始化的静态构造方法  
+> List<Type> exactly100 = Lists.newArrayListWithCapacity(100); //更具可读性的工厂方法  
+> List<Type> approx100 = Lists.newArrayListWithExpectedSize(100); //更具可读性的工厂方法  
+> Set<String> set = Sets.newHashSet();  
+> Set<Type> approx100Set = Sets.newHashSetWithExpectedSize(100);  
 
 <h3 id="iterables">Iterables</h3>
 
