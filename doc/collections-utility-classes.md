@@ -67,7 +67,7 @@ Guava中工具类与集合的对应关系如下:
 </table>
 
 
-* [静态工厂方法](#static-constructor)
+* [静态工厂方法](#constructor)
 * [Iterables](#iterables)
 * [Lists](#lists)
 * [Sets](#sets)
@@ -76,7 +76,7 @@ Guava中工具类与集合的对应关系如下:
 * [Multimaps](#multimaps)
 * [Tables](#tables)
 
-<h3 id="static-constructor">Static Constructor</h3>
+<h3 name="constructor">静态构造方法</h3>
 
 <h3 id="iterables">Iterables</h3>
 
