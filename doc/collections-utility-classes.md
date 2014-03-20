@@ -76,7 +76,7 @@ Guava中工具类与集合的对应关系如下:
 * [Multimaps](#multimaps)
 * [Tables](#tables)
 
-<h3 id="static">static constructor</h3>
+<h3 id="static-constructor">Static Constructor</h3>
 
 <h3 id="iterables">Iterables</h3>
 
