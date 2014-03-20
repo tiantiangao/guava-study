@@ -38,6 +38,23 @@ class AddLoggingList<E> extends ForwardingList<E> {
 ForwardingCollection、ForwardingList、ForwardingSet、ForwardingSortedSet、ForwardingMap、ForwardingSortedMap、ForwardingConcurrentMap、ForwardingMapEntry、ForwardingQueue、ForwardingIterator、ForwardingListIterator、ForwardingMultiset、ForwardingMultimap、ForwardingListMultimap、ForwardingSetMultimap
 
 #### PeekingIterator
+Iterators提供一个Iterators.peekingIterator(Iterator)方法，来把Iterator包装为PeekingIterator，这是Iterator的子类，它能让你提前查看下一次调用next()返回的元素  
+注意：Iterators.peekingIterator返回的PeekingIterator不支持在peek()操作之后调用remove()方法。 
+
+示例：复制一个List，并去除连续的重复元素。
+```java  
+List<E> result = Lists.newArrayList();
+PeekingIterator<E> iter = Iterators.peekingIterator(source.iterator());
+while (iter.hasNext()) {
+    E current = iter.next();
+    while (iter.hasNext() && iter.peek().equals(current)) {
+        // skip this duplicate element
+        iter.next();
+    }
+    result.add(current);
+}
+
+```
 
 ##### AbstractIterator
 
