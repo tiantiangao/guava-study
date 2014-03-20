@@ -1,4 +1,4 @@
-强大的集合工具类: java.util.Collections中未包含的集合工具
+强大的集合工具类
 ===
 Guava提供了很多类似java.util.Collections的静态工具类
 
