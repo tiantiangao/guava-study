@@ -208,7 +208,7 @@ Table有如下实现
 
 <h3 id="classtoinstancemap">ClassToInstanceMap</h3>
 
-ClassToInstanceMap<B> 相当于 Map<Class<? extends B>, B>, 它的键是类型，而值是符合键所指类型的对象。  
+ClassToInstanceMap\<B> 相当于 Map<Class<? extends B>, B>, 它的键是类型，而值是符合键所指类型的对象。
 ClassToInstanceMap额外声明了两个方法：T getInstance(Class<T>) 和T putInstance(Class<T>, T)，从而避免强制类型转换，同时保证了类型安全。  
 
 
