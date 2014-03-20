@@ -67,7 +67,7 @@ Guava中工具类与集合的对应关系如下:
 </table>
 
 
-* [静态工厂方法](#static)
+* [静态工厂方法](#static-constructor)
 * [Iterables](#iterables)
 * [Lists](#lists)
 * [Sets](#sets)
