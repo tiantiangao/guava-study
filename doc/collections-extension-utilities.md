@@ -12,29 +12,29 @@ Forwarding抽象类定义了一个抽象方法：delegate()，你可以覆盖这
 示例:  
 ```java  
 class AddLoggingList<E> extends ForwardingList<E> {  
-  final List<E> delegate; // backing list  
-  @Override  
-  protected List<E> delegate() {  
-    return delegate;  
-  }  
-  @Override  
-  public void add(int index, E elem) {  
-    log(index, elem);  
-    super.add(index, elem);  
-  }  
-  @Override  
-  public boolean add(E elem) {  
-    return standardAdd(elem); // implements in terms of add(int, E)  
-  }  
-  @Override  
-  public boolean addAll(Collection<? extends E> c) {  
-    return standardAddAll(c); // implements in terms of add  
-  }  
+    final List<E> delegate; // backing list  
+    @Override  
+    protected List<E> delegate() {  
+        return delegate;  
+    }  
+    @Override  
+    public void add(int index, E elem) {  
+        log(index, elem);  
+        super.add(index, elem);  
+    }  
+    @Override  
+    public boolean add(E elem) {  
+        return standardAdd(elem); // implements in terms of add(int, E)  
+    }  
+    @Override  
+    public boolean addAll(Collection<? extends E> c) {  
+        return standardAddAll(c); // implements in terms of add  
+    }  
 }  
 
 ```
 
-目前提供了Forwarding包装类的接口有:
+目前提供了Forwarding包装类的接口有:  
 ForwardingCollection、ForwardingList、ForwardingSet、ForwardingSortedSet、ForwardingMap、ForwardingSortedMap、ForwardingConcurrentMap、ForwardingMapEntry、ForwardingQueue、ForwardingIterator、ForwardingListIterator、ForwardingMultiset、ForwardingMultimap、ForwardingListMultimap、ForwardingSetMultimap
 
 #### PeekingIterator
