@@ -19,7 +19,7 @@ get-if-absent-compute
 如果有缓存则返回；否则运算、缓存、然后返回
 
 ### 缓存加载
-当缓存不存在时，guava提供了多种方式来加载数据
+当缓存不存在时，guava提供了多种方式来加载数据: CacheLoader、Callable、显示插入.
 
 ###### CacheLoader
 
@@ -48,7 +48,7 @@ try {
 ###### Callable
 
 所有类型的Guava Cache, 不管有没有自动加载功能, 都支持get(K, Callable<V>)方法。  
-get(K, Callable<V>)方法尝试返回缓存中对应的值; 如果值不存在，则使用Callable运算，工把结果加入缓存中。
+get(K, Callable<V>)方法尝试返回缓存中对应的值; 如果值不存在，则使用Callable运算，并把结果加入缓存中。
 
 ```java  
 Cache<Key, Graph> cache = CacheBuilder.newBuilder()
@@ -71,10 +71,18 @@ try {
 
 ###### 显式插入
 
-使用cache.put(key, value)方法可以直接向缓存中插入值, 并且会直接覆盖掉给定键之前映射的值. 
+使用cache.put(key, value)方法可以直接向缓存中插入值, 该方法会直接覆盖掉给定键之前映射的值. 
 
 
 ### 缓存回收
+由于guava缓存是将数据存放于内存中，所以确定一定以及肯定没有足够的内存存放所有的数据  
+guava提供了三种基本的缓存回收方式: 基于容量回收、定时回收和基于引用回收。
+
+###### 基于容量回收(Size-based Eviction)
+
+###### 定时回收(Timed Eviction)
+
+###### 基于引用回收(Reference-based Eviction)
 
 
 
