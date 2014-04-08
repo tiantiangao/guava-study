@@ -103,12 +103,69 @@ LoadingCache<Key, Graph> graphs = CacheBuilder.newBuilder()
 
 ###### 定时回收(Timed Eviction)
 
+CacheBuilder提供两种定时回收的方式：
+
+* expireAfterAccess(long, TimeUnit): 缓存在给定时间内没有被读/写访问过, 则回收. 回收顺序与基于容量回收的一样
+* expireAfterWrite(long, TimeUnit): 缓存在给定时间内没有被写访问(创建/覆盖), 则回收. 
+
 ###### 基于引用回收(Reference-based Eviction)
 
+如果使用week references的键/值、soft references的值，则缓存允许被垃圾回收:
 
+* CacheBuilder.weakKeys()
+* CacheBuilder.weakValues()
+* CacheBuilder.softValues()
 
+###### 显式移除
 
-### 其他
+可以通过以下接口，在任何时间清除缓存
+
+* Cache.invalidate(key): 单个清除 
+* Cache.invalidateAll(keys): 批量清除
+* Cache.invalidateAll(): 清除所有缓存项
+
+###### 移除监听器
+
+CacheBuilder.removalListener(RemovalListener)  
+添加一个监听器，在缓存项被移除时，进行额外操作.  
+
+```java  
+RemovalListener<Key, Value> removalListener = new RemovalListener<Key, Value>() {
+
+	// 缓存项被移除时，RemovalListener会获取移除通知[RemovalNotification]  
+	// 其中包含移除原因[RemovalCause]、键和值  
+    public void onRemoval(RemovalNotification<Key, Value> removal) {
+	    removal.getKey(); // 被移除的Key
+	    removal.getValue(); // 被移除的Value
+	    removal.getCause(); // 被移除的原因: EXPLICIT、REPLACED、COLLECTED、EXPIRED、SIZE
+    }
+};
+
+return CacheBuilder.newBuilder()
+    .expireAfterWrite(2, TimeUnit.MINUTES)
+    .removalListener(removalListener)
+    .build(loader);
+```
+
+用RemovalListeners.asynchronous(RemovalListener, Executor)把监听器装饰为异步操作
+
+###### 缓存清理的时间点
+
+使用CacheBuilder构建的缓存，不会“自动”执行清理和回收工作.  
+guava并没有建立独立线程来完成清理工作, 而是在写操作时顺带做少量的维护工作.  
+使用者可以建立自己的独立线程, 来主动清理缓存, 只需要调用Cache.cleanUp()就可以了
+
+###### 刷新
+
+LoadingCache.referesh(K)  
+刷新表示为键加载新值, 可以异步完成.  
+刷新和回收不一样，刷新时，缓存仍然可以向其他线程返回旧值，而回收时，读取线程必须等待新值加载完成.  
+如果刷新失败(抛出异常)，缓存将保留旧值  
+
+CacheLoader.reload(K, V)可以扩展刷新时的行为  
+CacheBuilder.refreshAfterWrite(long, TimeUnit)可以为缓存增加自动定时刷新功能  
+
+### 其他特性
 
 
 
