@@ -11,7 +11,8 @@ Java 7以前, Java中只能通过笨拙冗长的匿名类来达到近似函数�
 > 请务必确保，当使用Guava函数式的时候，用传统的命令式做同样的事情不会更具可读性。  
 > 总之，不要盲目使用函数式!!!
 
-自己比较一下这种场景:
+自己比较一下这种场景:  
+
 函数式
 ```java  
 Function<String, Integer> lengthFunction = new Function<String, Integer>() {
