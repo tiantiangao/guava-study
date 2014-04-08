@@ -80,6 +80,27 @@ guava提供了三种基本的缓存回收方式: 基于容量回收、定时回�
 
 ###### 基于容量回收(Size-based Eviction)
 
+构建Cache时，可以通过CacheBuilder.maximumSize(long)来指定缓存的容量.   
+在缓存容量达到指定容量时(maybe达到之前), 会尝试回收最近没有使用或总体上很少使用的缓存项.  
+
+另外，可以通过CacheBuilder.weight(Weigher), 来指定权重函数, 权重函数将在缓存创建时计算
+
+```java  
+LoadingCache<Key, Graph> graphs = CacheBuilder.newBuilder()
+        .maximumWeight(100000)
+        .weigher(new Weigher<Key, Graph>() {
+            public int weigh(Key k, Graph g) {
+                return g.vertices().size();
+            }
+        })
+        .build(
+            new CacheLoader<Key, Graph>() {
+                public Graph load(Key key) { // no checked exception
+                    return createExpensiveGraph(key);
+                }
+            });
+```
+
 ###### 定时回收(Timed Eviction)
 
 ###### 基于引用回收(Reference-based Eviction)
