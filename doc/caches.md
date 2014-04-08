@@ -28,6 +28,7 @@ LoadingCache是一种基于CacheLoader的缓存实现.
 ```java  
 LoadingCache<Key, Graph> graphs = CacheBuilder.newBuilder()  
         .maximumSize(1000)
+        .expireAfterWrite(10, TimeUnit.MINUTES)
         .build(
             new CacheLoader<Key, Graph>() {
                 public Graph load(Key key) throws AnyException {
