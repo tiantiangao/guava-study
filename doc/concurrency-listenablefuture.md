@@ -8,8 +8,8 @@ ListenableFuture继承自Future.
 ### 接口
 
 ```java  
-interface: ListenableFuture   
-method: addListener(Runnable, Executor)  
+interface ListenableFuture<V> extends Future<V>   
+void addListener(Runnable listener, Executor executor)  
 ```
 
 传统的Future: 通过异步的方式计算返回结果，Future是运行中的多线程的一个引用句柄.  
