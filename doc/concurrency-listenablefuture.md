@@ -77,6 +77,16 @@ ListenableFutureTask.create(Callable<V>);
 JdkFutureAdapters.listenInPoolThread(Future);  
 ```
 
+### 使用
+
+guava还提供了一些支持链式操作的API
+
+```java  
+Futures.transform(ListenableFuture<A>, AsyncFunction<A, B>, Executor);  
+Futures.transform(ListenableFuture<A>, Function<A, B>, Executor);  
+Futures.allAsList(Iterable<ListenableFuture<V>>);  
+Futures.successfulAsList(Iterable<ListenableFuture<V>>);  
+```
 
 
 ------
