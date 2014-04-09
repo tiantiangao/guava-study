@@ -22,7 +22,7 @@ Guava 是一个 Google 的基于java1.6类库的扩展项目，包括 collection
 * [函数式](doc/functional-idioms.md)
 * 并发工具
 	+ [可监听的Future](doc/concurrency-listenablefuture.md)
-	+ [Service](doc/concurrency-service.md)
+	+ [Service框架](doc/concurrency-service.md)
 * [字符串工具](doc/strings.md)
 * [网络工具](doc/networking.md)
 * [原生类型](doc/primitives.md)
