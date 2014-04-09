@@ -28,6 +28,55 @@ FutureCallback采用轻量级的设计, 只需要实现以下两个方法
 * onSuccess(V) // 在Future成功的时候执行
 * onFailure(Throwable) // 在Future失败的时候执行
 
+### 创建ListenableFuture
+
+传统JDK中创建Future的方式:
+
+```java  
+Executors.newFixedThreadPool(10).submit(Callable);    
+```
+
+guava中创建ListenableFuture的方式:  
+
+```java  
+MoreExecutors.listeningDecorator(ExecutorService).submit(Callable);  
+```
+
+完整的ListenableFuture使用示例:
+
+```java  
+// 创建ListeningExecutorService
+ListeningExecutorService service = MoreExecutors.listeningDecorator(Executors.newFixedThreadPool(10));
+
+// 添加执行操作
+ListenableFuture explosion = service.submit(new Callable() {
+  public Explosion call() {
+    return pushBigRedButton();
+  }
+});
+
+// 添加回调
+Futures.addCallback(explosion, new FutureCallback() {
+  // 操作执行完成后，执行onSuccess
+  public void onSuccess(Explosion explosion) {
+    walkAwayFrom(explosion);
+  }
+  public void onFailure(Throwable thrown) {
+    battleArchNemesis(); // escaped the explosion!
+  }
+});
+```
+
+当然，还有其他方式来创建，比如:
+
+```java  
+// 类似JDK的FutureTask模式
+ListenableFutureTask.create(Callable<V>);
+
+// 将其他API提供的Future转换为ListenableFuture
+JdkFutureAdapters.listenInPoolThread(Future);  
+```
+
 
 
 ------
