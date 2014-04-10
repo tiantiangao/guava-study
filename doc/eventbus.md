@@ -21,6 +21,41 @@ EventBus不适用于进程间通信。
 
 ### 示例
 
+消息封装类: 任意的Java对象均可  
+```java  
+public class LogEvent {
+
+	private String log;
+	
+	// setter、getter
+}
+```
+
+消息接收类: 任意的Java对象均可, 只需要在接收方法上添加注解@Subscribe即可  
+```java  
+public class LogEventListener {
+
+	@Subscribe
+	public void listen(LogEvent log) {
+		// handle log
+	}
+
+}
+```
+
+消息发布  
+```java  
+// 事件总线
+EventBus eventBus = new EventBus();
+// 事件监听者
+LogEventListener logEventListener = new LogEventListener();
+// 注册监听
+eventBus.register(logEventListener)
+// 发布消息
+eventBus.post(new LogEvent("测试"));
+```
+
+
 
 ------
 [返回目录](/README.md)
