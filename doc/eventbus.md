@@ -70,14 +70,95 @@ guava并未将EventBus设计为单例, 所以可以根据实际情况使用
 
 ### DeadEvent
 
-EventBus会将所有发布后，没有监听者处理的事件包装为DeadEvent
+EventBus会将所有发布后，没有监听者处理的事件包装为DeadEvent, 可以通过监听该类型的消息来检测哪些消息未指明监听者
+
+### 监听多个消息
+EventBus中，可以支持同一个监听者监听多个消息，只需要在每个订阅消息的方法上加上@Subscribe注解即可  
+
+```java  
+    @Subscribe  
+    public void listenInteger(Integer event) {  
+        lastInteger = event; 
+        System.out.println("event Integer:"+lastInteger);
+    }  
+   
+    @Subscribe  
+    public void listenLong(Long event) {  
+        lastLong = event; 
+        System.out.println("event Long:"+lastLong);
+    }  
+```
 
 ### 单例使用
 
 在简单情况下，可以将EventBus声明为全局唯一的单例, 并可以通过Spring完成自动注册, 这样将进一步简单使用
 
+示例:  
 
+EventBus工厂
+```java  
+public class EventBusFactory {
 
+	private static final EventBusFactory factory = new EventBusFactory();
+
+	private final EventBus eventBus;
+
+	private EventBusFactory() {
+		eventBus = new AsyncEventBus("AsyncEventBus", Executors.newFixedThreadPool(5));
+	}
+
+	public static final EventBusFactory getDefault() {
+		return factory;
+	}
+
+	public EventBus eventBus() {
+		return eventBus;
+	}
+
+}
+```
+
+通过spring自动注册  
+```java  
+@Service  
+public class EventBusPostProcessor implements BeanPostProcessor {  
+
+	@Override
+	public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
+		return bean;
+	}
+
+	@Override
+	public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
+		// for each method in the bean
+		Method[] methods = bean.getClass().getMethods();
+		for (Method method : methods) {
+			// check the annotations on that method
+			Annotation[] annotations = method.getAnnotations();
+			for (Annotation annotation : annotations) {
+				// if it contains the Subscribe annotation
+				if (annotation.annotationType().equals(Subscribe.class)) {
+					// 检查到bean声明了Guava EventBus Subscribe注解, 则自动注册到全局的EventBus上
+					EventBusFactory.getDefault().eventBus().register(bean);
+					LOGGER.info("Bean " + beanName + "  was subscribed to EventBus");
+					// we only need to register once
+					return bean;
+				}
+			}
+		}
+
+		return bean;
+	}
+
+}
+```
+
+发布消息  
+```java  
+EventBusFactory.getDefault().eventBus().post(new LogEvent(log));
+```
+
+通过这种方式，只需要编写监听者即可，无需关心注册
 
 ------
 [返回目录](/README.md)
